@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>InnovaPrint</title>
+    <link rel="stylesheet" href="style_index.css">
+</head>
+
+<body>
+
+    <div id="registro">
+        <div class="registro-card">
+            <img src="log.jpeg" class="logo-registro" alt="InnovaPrint">
+            <h2>Crear cuenta</h2>
+            <input type="text" id="usuario" placeholder="Usuario">
+            <input type="password" id="clave" placeholder="Contraseña">
+            <button onclick="registrar()">REGISTRAR</button>
+        </div>
+    </div>
+
+    <div id="portal">
+
+        <header>
+            <h2>InnovaPrint</h2>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="servicio.html">Servicios</a>
+                <a href="Nosotros.html">Nosotros</a>
+                <a href="Contacto.html">Contacto</a>
+                <a href="file:///C:/Users/user/OneDrive/Desktop/Index/InnovaPrint_Index/proyecto/catalogo.html">Catálogo</a>
+                <a href="#" onclick="cerrarSesion()">Salir</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>InnovaPrint</h1>
+            <p>
+                Transformamos tus ideas en productos personalizados de alta calidad
+                con diseños únicos y tecnología de impresión profesional.
+            </p>
+        </section>
+
+        <section class="moving-section">
+            <div class="moving-left">
+                <div class="moving-wrapper">
+                    <div class="moving-text">
+                        <span>Diseño de Logos</span>
+                        <span>Ropa Personalizada</span>
+                        <span>Impresión Publicitaria</span>
+                        <span>Artículos Promocionales</span>
+                        <span>Packaging Creativo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="moving-right">
+                <h2>¿Cómo te ayudamos?</h2>
+                <p>
+                    En InnovaPrint convertimos tus ideas en productos reales.
+                    Diseñamos, imprimimos y entregamos con calidad profesional
+                    para que tu marca destaque.
+                </p>
+                <ul>
+                    <li>✔ Diseños exclusivos</li>
+                    <li>✔ Materiales premium</li>
+                    <li>✔ Entrega rápida</li>
+                    <li>✔ Atención personalizada</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="services">
+            <h2>NUESTROS SERVICIOS</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Diseño de Logos</h3>
+                    <p>Identidad visual profesional para tu marca.</p>
+                </div>
+                <div class="card">
+                    <h3>Ropa Personalizada</h3>
+                    <p>Camisetas, uniformes y prendas únicas.</p>
+                </div>
+                <div class="card">
+                    <h3>Impresión Publicitaria</h3>
+                    <p>Banners, flyers y material promocional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <p>No sigas tendencias, créalas con prendas hechas especialmente a tu gusto.</p>
+        </section>
+
+        <footer>
+            © 2026 InnovaPrint — Todos los derechos reservados
+        </footer>
+
+    </div>
+
+    <script>
+        window.onload = function () {
+            if (localStorage.getItem("usuario")) {
+                mostrarPortal()
+            }
+        }
+
+        function registrar() {
+            let usuario = document.getElementById("usuario").value
+            let clave = document.getElementById("clave").value
+            if (usuario && clave) {
+                localStorage.setItem("usuario", usuario)
+                mostrarPortal()
+            } else {
+                alert("Completa los campos")
+            }
+        }
+
+        function mostrarPortal() {
+            document.getElementById("registro").style.display = "none"
+            document.getElementById("portal").style.display = "block"
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem("usuario")
+            location.reload()
+        }
+    </script>
+
+</body>
+</html>

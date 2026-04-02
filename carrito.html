@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="carrito.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <h2 class="logo">InnovaPrint</h2>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Contacto</a>
+            <a href="#">Catalogo</a>
+            <a href="#">Salir</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Shopping Bag</h1>
+
+        <div id="lista"></div>
+
+        <div class="total">
+            <span>Subtotal</span>
+            <span>$<span id="total">0</span></span>
+        </div>
+
+        <button class="checkout">Checkout</button>
+    </div>
+
+    <script src="carrito.js"></script>
+
+    <div id="lista"></div>
+
+    <div class="total">
+        <span>Total</span>
+        <span>$<span id="total">0</span></span>
+    </div>
+
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        const lista = document.getElementById('lista');
+        const totalHTML = document.getElementById('total');
+
+        function mostrarCarrito() {
+            lista.innerHTML = "";
+            let total = 0;
+
+            carrito.forEach((producto, index) => {
+                const div = document.createElement('div');
+                div.classList.add('item');
+
+                div.innerHTML = `
+                <img src="${producto.img}">
+     
+      <div class="info">
+        <h3>${producto.nombre}</h3>
+        <p>$${producto.precio}</p>
+        <span class="remove" onclick="eliminar(${index})">Eliminar</span>
+      </div>
+
+      <div>$${producto.precio}</div>
+    `;
+
+                lista.appendChild(div);
+                total += producto.precio;
+            });
+
+            totalHTML.textContent = total;
+        }
+
+        function eliminar(index) {
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            mostrarCarrito();
+        }
+
+        mostrarCarrito();
+    </script>
+
+
+
+</body>
+
+</html>
